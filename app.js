@@ -1,10 +1,12 @@
 
 
 let promptly = require('promptly');
-
+import A,{anadirAlumno as anadirAlumno, eliminarAlumno as eliminarAlumno,editarAlumno as editarAlumno,buscarArregloIndice as buscarArregloIndice, buscarArregloNombre as buscarArregloNombre,
+imprimirArreglo as imprimirArreglo, imprimirPromedio as imprimirPromedio} from './arregloOp';
 
 var alumnos = [];
-
+var pattern = /([0-9].)/;
+var nombrePattern = /[a-zA-Z]+/;
 
 
 void async function () {
@@ -24,114 +26,47 @@ void async function () {
 
         switch (command) {
             case "1": {
-                let nombre = await promptly.prompt("Ingrese el nombre del alumno");
-                let promedio = await promptly.prompt("Ingrese el promedio del alumno");
-                let alumno = {nombre,promedio};
-
-
-                alumnos.push(alumno);
-                console.log("Alumno añadido correctamente");
+                A.anadirAlumno();
                 break;
-            }
-            case "2": {
-                let nombreEliminar = await promptly.prompt("Ingrese el nombre del alumno a eliminar");
-
-                for(i = 0; i < alumnos.length; i++){
-
-                    if(alumnos[i] != null){
-                        if(alumnos[i].nombre == nombreEliminar){
-                            alumnos[i] = null;
-                            console.log("Se ha eliminado al alumno correctamente");
-                        }
-                    }  
                 }
+
+            
+            case "2": {
+                A.eliminarAlumno();
+                break;
+                
 
             }
             case "3": {
-                let nombreEditar = await promptly.prompt("Ingrese el nombre del alumno a editar");
-
-                for(i = 0; i < alumnos.length; i++){
-
-                    if(alumnos[i] != null){
-                        if(alumnos[i].nombre == nombreEditar){
-                            let nombre = await promptly.prompt("Ingrese el nuevo nombre del alumno");
-                            let promedio = await promptly.prompt("Ingrese el nuevo promedio del alumno");
-                            let alumno = [nombre,promedio];
-                            alumnos[i] = alumno;
-                            console.log("Se ha editado al alumno correctamente");
-
-                        }
-                    }  
-                }
+              A.editarAlumno();
+              break;
 
             }
-            case "4":{
-                let nombreEncontrar = await promptly.prompt("Ingrese el nombre del alumno a encontrar");
-
-                for(i = 0; i < alumnos.length; i++){
-
-                    if(alumnos[i] != null){
-                        if(alumnos[i].nombre == nombreEncontrar){
-                            console.log("------------------------------------------")
-                            console.log("Alumno encontrado!");
-                            console.log("Nombre: "+alumnos[i].nombre);
-                            console.log("Promedio: "+alumno[i].promedio);
-                            console.log("------------------------------------------")
-
-
-                        }
-                    }  
-                }
+            case "4": {
+               A.buscarArregloNombre();
+               break;
 
             }
-            case "5":{
-                let indice = await promptly.prompt("Ingrese la posicion del alumno");
-
-                
-                if(alumnos.length > indice){
-                    if(alumnos[indice] != null){
-                        console.log("------------------------------------------")
-                        console.log("Alumno encontrado!");
-                        console.log("Nombre: "+alumnos[indice].nombre);
-                        console.log("Promedio: "+alumno[indice].promedio);
-                        console.log("------------------------------------------")
-                    }
-                }
+            case "5": {
+               A.buscarArregloIndice();
+               break;
 
             }
-            case "6":{
-                console.log("Se va a imprimir todo el arreglo de alumnos: ");
-                alumnos.forEach(element => {
-                    console.log("------------------------------------------")
-                    console.log("Nombre: "+element.nombre);
-                    console.log("Promedio: "+element.promedio);
-                    console.log("------------------------------------------")
-                });
-            }
-            case "7":{
-                let alumnos = 0;
-                let suma = 0;
-                let promedio = 0.0;
-
-                for(i = 0; i < alumnos.length ; i++){
-                    if(alumnos[i] !=null){
-                        suma = suma + alumnos[i].promedio;
-                        alumnos++;
-
-                    }
-                }
-
-                promedio = suma / alumnos;
-                console.log("------------------------------------------")
-                console.log("Promedio general: "+promedio);
-                console.log("Alumnos totales: "+suma);
-                console.log("------------------------------------------")
+            case "6": {
+                A.imprimirArreglo();
+                break;
 
 
             }
-            case "8":{
+            case "7": {
+                A.imprimirPromedio();
+                break;
+
+
+            }
+            case "8": {
                 console.log("bye amiguito");
-                console.log()
+                
             }
 
         }
@@ -143,24 +78,7 @@ void async function () {
 
 
 
-let anadirAlumno = function (alumno) {
 
-
-
-}
-
-
-let eliminarAlumno = function (alumno) {
-
-}
-
-let editarAlumno = function (alumno) {
-
-}
-
-let buscarElemento = function (key) {
-
-}
 
 
 
